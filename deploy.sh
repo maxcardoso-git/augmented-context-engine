@@ -30,7 +30,7 @@ ssh root@72.61.52.70 << 'ENDSSH'
     git pull origin main
 
     echo "📦 Instalando dependências..."
-    npm install --production
+    npm install
 
     echo "🔨 Compilando TypeScript..."
     npm run build
