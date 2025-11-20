@@ -1,0 +1,77 @@
+{
+  "request_id": "req-2025-11-20-0001",
+  "tenant_id": "cliente_x",
+  "use_case": "DRE_MARGIN_ANALYSIS",
+  "mode": "mixed",
+  "language": "pt-BR",
+  "time_window": {
+    "from": "2025-11-01T00:00:00Z",
+    "to": "2025-11-20T23:59:59Z",
+    "granularity": "day"
+  },
+  "context": {
+    "domain": "finance_dre",
+    "operation_id": "op-12345",
+    "user_context": {
+      "user_id": "u-999",
+      "role": "EXECUTIVE",
+      "department": "CFO",
+      "permissions": ["VIEW_DRE", "VIEW_CONTRACT_DETAILS"]
+    },
+    "business_metadata": {
+      "client_id": "C123",
+      "contract_id": "CTR-987",
+      "operation_code": "OP-DRE-01",
+      "region": "BR-SP"
+    }
+  },
+  "fsb_features": {
+    "schema_version": "1.0.0",
+    "features": {
+      "margin_delta_pct": -0.12,
+      "revenue_delta_pct": -0.03,
+      "cost_delta_pct": 0.09,
+      "absenteeism_rate": 0.18,
+      "avg_tma_seconds": 450
+    }
+  },
+  "analytic_data": {
+    "schema_version": "1.0.0",
+    "tables": [
+      {
+        "name": "dre_daily",
+        "primary_keys": ["date"],
+        "columns": [
+          { "name": "date", "type": "date", "role": "TIMESTAMP" },
+          { "name": "revenue", "type": "number", "role": "METRIC" },
+          { "name": "cost", "type": "number", "role": "METRIC" },
+          { "name": "margin", "type": "number", "role": "METRIC" }
+        ],
+        "rows": [
+          { "date": "2025-11-15", "revenue": 100000, "cost": 80000, "margin": 20000 },
+          { "date": "2025-11-16", "revenue": 95000, "cost": 81000, "margin": 14000 },
+          { "date": "2025-11-17", "revenue": 98000, "cost": 79000, "margin": 19000 },
+          { "date": "2025-11-18", "revenue": 102000, "cost": 82000, "margin": 20000 },
+          { "date": "2025-11-19", "revenue": 97000, "cost": 83000, "margin": 14000 },
+          { "date": "2025-11-20", "revenue": 99000, "cost": 81000, "margin": 18000 }
+        ]
+      }
+    ]
+  },
+  "prompt": "Analise a variação de margem da operação, identifique causas prováveis e proponha ações práticas para recuperar a margem mantendo o SLA.",
+  "constraints": {
+    "max_tokens": 800,
+    "max_insights": 5,
+    "max_depth": 3,
+    "disable_llm": false
+  },
+  "return_options": {
+    "include_raw_llm_output": false,
+    "include_debug_info": false,
+    "include_intermediate_scores": true
+  },
+  "trace": {
+    "trace_id": "trace-xyz-123",
+    "span_id": "span-abc-999"
+  }
+}
